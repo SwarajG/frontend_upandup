@@ -5,14 +5,19 @@ module.exports = {
   devServer: {
     stats: 'errors-only',
   },
-  devtool: 'source-map',
-  entry: './app/index.js',
+  devtool: 'sourcemap',
+  entry: [
+    './app/index.js',
+    'webpack-hot-middleware/client'
+  ],
   output: {
     path: __dirname + '/dist',
     filename: 'bundle.js',
-    publicPath: '/static/'
+    publicPath: __dirname + '/dist'
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
     new HtmlWebpackPlugin({
       title: 'Up&Up',
       template: 'index.ejs',
@@ -23,8 +28,9 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.js$/,
-      loader: 'babel-loader',
-      include: __dirname + '/app'
+      loaders: ['babel-loader'],
+      exclude: /node_modules/,
+      include: path.join(__dirname, 'app')
     },
     {
       test: /\.css$/,

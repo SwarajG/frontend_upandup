@@ -2,7 +2,7 @@
   "name": "Frontend_app",
   "version": "1.0.0",
   "description": "Frontend part for the upandupsite",
-  "main": "index.js",
+  "main": "server.js",
   "author": "Swaraj Gandhi",
   "license": "MIT",
   "scripts": {
