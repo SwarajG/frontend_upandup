@@ -1,6 +1,7 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var path = require('path');
 var webpack = require('webpack');
+
 module.exports = {
   devServer: {
     stats: 'errors-only',
@@ -13,16 +14,15 @@ module.exports = {
   output: {
     path: __dirname + '/dist',
     filename: 'bundle.js',
-    publicPath: __dirname + '/dist'
+    publicPath: '/',
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new HtmlWebpackPlugin({
       title: 'Up&Up',
-      template: 'index.ejs',
-      inject: 'body',
-      filename: '../views/index.html'
+      template: 'index.temp.ejs',
+      inject: 'body'
     }),
   ],
   module: {
